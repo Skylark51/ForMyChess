@@ -3,36 +3,52 @@
 ForMyChess keeps **personal games** and **reference chess knowledge** separate.
 
 - `data/games/`: the user's own games; source of truth for weakness analysis.
-- `reference-book.js`: a small browser-ready opening book used by the offline AI.
+- `reference-book.js`: a compact browser-ready reference corpus used by the offline AI.
 - this directory: provenance and future import notes for larger reference corpora.
 
-## Current source
+## Opening source
 
-The opening names and representative opening sequences in `reference-book.js` are curated from the
+The standard opening names and representative sequences in `reference-book.js` are curated from the
 [`lichess-org/chess-openings`](https://github.com/lichess-org/chess-openings) project.
 That project is published under **CC0-1.0** and describes its PGN sequences as well-known/common
 sequences based on master games.
 
-Lichess database exports are also available for larger future experiments. Standard game exports,
-positions/evaluations and other database material are published from `database.lichess.org`; verify
-the license of the specific export type before importing it.
+Lichess database exports are also available for larger future experiments. Large PGN corpora should
+be processed offline into a distilled position -> move book instead of being shipped directly in the
+browser bundle.
 
-## Why the repository does not vendor a huge PGN dump
+## Famous model games
 
-ForMyChess is designed to open directly from `index.html`. Shipping millions of games would make the
-repository and browser startup unnecessarily heavy. The browser therefore uses a compact reference
-book, while larger PGN corpora should be processed offline into a distilled position -> move book or
-training catalog.
+The reference corpus also contains compact move trajectories from three historically famous games in
+which Black won. This matters because the current Arena AI plays Black.
+
+1. **Karpov–Kasparov, World Championship 1985 Game 16 (B44, 0-1)**
+   - model: protected knight outpost / restriction
+   - key moment: `16...Nd3`
+   - verification source: https://chesstrapguide.com/learn/karpov-kasparov-1985-game-16-pgn/
+
+2. **Byrne–Fischer, New York 1956 (D92, 0-1)**
+   - model: initiative, coordination and tactical conversion
+   - key moment: `17...Be6`
+   - verification source: https://www.chessworld.net/chessclubs/openingguide/game-of-the-century.asp
+
+3. **Marshall–Capablanca, New York 1909 Game 23 (D33, 0-1)**
+   - model: outside majority, active rook and technical conversion
+   - verification source: https://www.redhotpawn.com/forum/only-chess/past-great-players.203564
+
+These are stored as move sequences, not copied annotations. When a live game reaches a matching
+position through the same reference trajectory, the AI can continue with the historical Black move.
+If the player leaves the reference path, normal search immediately takes over.
 
 ## AI usage
 
-The browser AI currently combines:
+The browser AI combines:
 
-1. reference-book move selection when the current position matches a known opening position;
+1. position-key reference move selection from the opening and model-game corpus;
 2. iterative-deepening alpha-beta search with a time budget;
 3. quiescence search on tactical leaf positions;
 4. positional evaluation (material, center, development, mobility, pawn structure, bishop pair,
    rook files, king safety and endgame king activity).
 
-Reference moves are hints, not hard-coded forced play. Once a player leaves the known book position,
-the search engine takes over.
+The repository intentionally does not vendor a huge master database. The compact corpus keeps
+`index.html` directly runnable while still giving the AI real master-game patterns to follow.
