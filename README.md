@@ -1,36 +1,55 @@
 # ForMyChess
 
-브라우저에서 바로 실행하는 체스 학습용 웹게임 프로토타입입니다.
+브라우저에서 바로 실행하는 개인 체스 학습용 웹게임입니다.
 
 ## 현재 구현
 
 - 오프닝 / 미들게임 / 엔드게임 학습 섹션과 전용 시작 포지션
 - 스크롤 기반 단일 페이지 학습 흐름
-- 클릭 방식 체스 플레이와 부드러운 말 이동 애니메이션
-- 브라우저 내부 미니맥스 + 알파베타 가지치기 AI (3단계 난이도)
+- 클릭 방식 체스 플레이와 거리 기반 부드러운 말 이동 애니메이션
 - 합법 수 판정, 체크 / 체크메이트 / 스테일메이트
 - 캐슬링, 앙파상, 자동 퀸 승격
 - 체크 펄스 및 체크메이트 소형 파티클 이펙트
-- 좌표 기보, 간단한 포지션 평가 바, 단계별 코치 메시지
+- 좌표 기보, 포지션 평가 바, 단계별 코치 메시지
 - 모바일 반응형 UI와 키보드 단축키
 
-## 개인 훈련 데이터
+## AI
 
-개인 기보는 `data/games/<game_id>.json`에 **한 판당 한 파일**로 저장합니다. 이 디렉터리가 원천 데이터베이스이며, 개별 기보를 곧바로 훈련 세트로 하드코딩하지 않습니다.
+기존의 단순 1–3 ply 미니맥스보다 한 단계 강화된 오프라인 AI를 사용합니다.
 
-- 원천: PGN + 메타데이터
-- 분석: 강점 / 약점 / 엔진 재검토 필요 항목
-- 집계: 여러 판에서 반복되는 약점을 점수화
-- 훈련: 집계된 약점에서 문제 큐를 파생 생성
+- Lichess `chess-openings` CC0 데이터에서 정리한 마스터 오프닝 북
+- 포지션 키 기반 북 매칭(수순이 전치되어도 같은 상태면 활용 가능)
+- 난이도별 2 / 3 / 4 ply 목표의 iterative deepening
+- alpha-beta pruning + transposition cache
+- capture quiescence search
+- material / center / development / mobility / pawn structure / bishop pair / rook activity / king safety / endgame king activity 평가
+- 난이도별 시간 예산으로 브라우저가 지나치게 오래 멈추는 것을 제한
 
-병렬 작업 시 서로 다른 기보 파일을 추가하므로 동일 파일 충돌을 최소화합니다. 자세한 규칙은 `data/README.md`를 참고하세요.
+큰 Stockfish 바이너리나 온라인 API 없이 `index.html`을 직접 열어도 동작하는 구성을 유지합니다.
+
+## 개인 기보와 세이브파일
+
+AI Arena의 대국은 브라우저에서 매 수 자동 저장됩니다.
+
+- 진행 중: `localStorage` draft로 즉시 보존
+- 체크메이트 / 스테일메이트 / 재시작 / 학습 단계 변경: 한 판 단위 기록으로 확정
+- `현재 기보 저장`: 현재 게임 JSON 다운로드
+- `전체 백업`: 지금까지 누적된 모든 게임을 하나의 JSON bundle로 다운로드
+- 각 게임에는 PGN, UCI 수순, 매 ply FEN, 전후 평가값, 오프닝 북 참조 기록이 함께 들어갑니다.
+
+브라우저는 보안상 로컬 Git 저장소에 직접 파일을 쓸 수 없기 때문에, 장기 보관/분석용 원천 데이터는 백업 JSON을 가져와 `data/games/`로 넣습니다.
 
 ```bash
+python tools/import_browser_save.py ~/Downloads/formychess-save-2026-08-07.json
 python tools/validate_game_data.py
 python tools/build_training_catalog.py
 ```
 
-기존의 `apply_personal_training.py` 방식처럼 한 판의 분석을 `index.html`에 직접 박아 넣는 방식은 사용하지 않습니다.
+개인 기보의 최종 원천 데이터베이스는 기존 원칙대로 `data/games/<game_id>.json`의 **한 판당 한 파일** 구조를 유지합니다. `data/README.md`를 참고하세요.
+
+## Reference data
+
+`reference-book.js`의 오프닝 데이터는 `lichess-org/chess-openings`의 CC0 공개 데이터를 기반으로 정리했습니다. 더 큰 프로/마스터 PGN 데이터셋은 앱에 그대로 싣지 않고 오프라인에서 position → move 형태로 증류하는 구조를 권장합니다. 출처와 사용 원칙은 `data/reference/README.md`에 기록합니다.
 
 ## 실행
 
