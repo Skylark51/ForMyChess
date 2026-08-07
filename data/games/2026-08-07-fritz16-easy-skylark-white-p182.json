@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "game_id": "2026-08-07-fritz16-easy-skylark-white-p182",
+  "source": {
+    "kind": "user_pgn",
+    "event": "Fritz 16 Easy Game",
+    "event_date": "2026-08-07",
+    "white": "skylark",
+    "black": "Hobby player (Fritz)",
+    "result": "*",
+    "ply_count": 182
+  },
+  "player": {
+    "name": "skylark",
+    "color": "white"
+  },
+  "pgn": "[Event \"Fritz 16 Easy Game\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"skylark\"]\n[Black \"Hobby player (Fritz)\"]\n[Result \"*\"]\n[PlyCount \"182\"]\n[EventDate \"2026.08.07\"]\n\n1. e4 $2 {2 missed something} c6 {0} 2. Nf3 {1} d5 {0} 3. exd5 {1} e6 {0} 4. dxe6 {1} Bxe6 {0} 5. Nc3 {2} Bb4 {0} 6. a3 {1} Bc5 {5} 7. b4 {1} Bd6 {0} 8. b5 {11} Qe7 {0} 9. bxc6 {1} Nxc6 {0} 10. Bb5 {2} Bh3+ {0} 11. Qe2 $2 {10 missed something} Qxe2+ {0} 12. Nxe2 {3} Bxg2 {0} 13. Rg1 {1} a6 {0} 14. Bxc6+ $1 {3} bxc6 {0} 15. Rxg2 {4} Rb8 {0} 16. Bb2 {4} Rxb2 {0} 17. c3 {12} Nh6 {7} 18. Rxg7 $1 {6} Bxa3 {12} 19. Rxa3 {5} Nf5 {7} 20. Rg5 {10} Rb1+ {0} 21. Nc1 {5} Rxc1+ {0} 22. Ke2 {1} Nd6 {0} 23. Rxa6 {5} f6 {8} 24. Rf5 $2 {7 missed something} O-O {7} 25. Rc5 {8} Rc8 {0} 26. Raxc6 {2} Re8+ {0} 27. Kd3 {5} Re6 {0} 28. Nd4 $2 {10 missed something} Kf7 {0} 29. Nxe6 {1} Kxe6 {0} 30. Rc7 {3} Rg1 {0} 31. Rxh7 {2} Rb1 {0} 32. Rhh5 {5} Ra1 {0} 33. f4 {8} Kd7 {0} 34. Rh7+ {5} Ke6 {0} 35. h4 {8} Rh1 {0} 36. h5 {1} Rf1 {0} 37. h6 {1} Rf3+ {0} 38. Ke2 {1} Rxf4 {0} 39. Rhc7 {4} f5 {0} 40. h7 {1} Re4+ {0} 41. Kf3 {4} Rh4 {0} 42. h8=Q {2} Rxh8 {0} 43. d4 {4} Kf6 {8} 44. R7c6 $2 {12 missed something} Ke7 {0} 45. Rc7+ {15} Kd8 {0} 46. R5c6 {6} Rh3+ {0} 47. Kg2 {2} Rh4 {3} 48. Rxd6+ {11} Kxc7 {0} 49. Rf6 {1} Rh7 {0} 50. Rxf5 {1} Rh4 {6} 51. d5 $2 {1 missed something} Rh7 {6} 52. Rf6 {17} Rg7+ {5} 53. Kf2 {3} Kb7 {0} 54. d6 {1} Kc6 {0} 55. Ke2 {4} Rh7 {0} 56. c4 {5} Ra7 {5} 57. Kd3 $2 {2 missed something} Kc5 {1} 58. Ke4 {9} Kxc4 {0} 59. Ke5 {1} Kb5 {0} 60. Ke6 {2} Ra8 {6} 61. d7 $1 {1} Kc4 {0} 62. Ke7 {1} Kd5 {0} 63. d8=Q+ {1} Rxd8 {0} 64. Kxd8 {1} Kc4 {0} 65. Rd6 {1} Kb4 {0} 66. Kc7 {2} Ka5 {0} 67. Rc6 {1} Ka4 {0} 68. Kb6 {1} Kb4 {0} 69. Rc5 {1} Ka4 {0} 70. Ra5+ {5} Kb4 {0} 71. Rc5 {1} Ka3 {0} 72. Kb5 {1} Kb2 {0} 73. Rc4 {2} Ka2 {0} 74. Rc2+ {2} Kb1 {0} 75. Rc3 {3} Kb2 {0} 76. Kb4 {1} Ka2 {0} 77. Ra3+ {5} Kb2 {0} 78. Rc3 {4} Ka2 {0} 79. Rc2+ {2} Ka1 {0} 80. Kc3 {2} Kb1 {0} 81. Rb2+ {2} Kc1 {0} 82. Rc2+ {7} Kd1 {0} 83. Kd3 {1} Ke1 {0} 84. Rd2 {1} Kf1 {0} 85. Ke3 {1} Kg1 {0} 86. Re2 {0} Kf1 {0} 87. Kf3 {1} Kg1 {0} 88. Rf2 {1} Kh1 {0} 89. Kg3 {4} Kg1 {0} 90. Kf3 {5} Kh1 {0} 91. Rf1+ {3} Kh2 {0} *",
+  "normalization_notes": [
+    "The supplied PGN had move-number display corruption after moves 42, 62, 85 and 89; the stored PGN normalizes them to 43, 63, 86 and 90 without changing SAN moves.",
+    "Fritz 'missed something' annotations are preserved as engine hints, not treated as independently verified best-move analysis."
+  ],
+  "observations": [
+    {"id":"g182-o01","kind":"weakness","move":"6.a3 7.b4 8.b5","phase":"opening","severity":2,"confidence":"high","tags":["opening_tempo","development_discipline","king_safety"],"summary":"Three consecutive flank-pawn tempi were spent before completing development or securing the king.","training_rule":"Before a non-central pawn push in the opening, count undeveloped minor pieces and ask whether the move creates a concrete threat."},
+    {"id":"g182-o02","kind":"review","move":"11.Qe2?","phase":"opening","severity":2,"confidence":"medium","tags":["check_response","forcing_moves","candidate_generation"],"summary":"Fritz marked the response to the discovered queen check as 'missed something'. Exact best play is not engine-verified here.","training_rule":"When in check, enumerate capture, block and king-move responses before selecting the most natural block."},
+    {"id":"g182-o03","kind":"strength","move":"14.Bxc6+!","phase":"middlegame","severity":1,"confidence":"high","tags":["forcing_moves","zwischenzug","active_defense"],"summary":"A forcing check was inserted before completing the rook/bishop sequence, improving the tactical sequence.","training_rule":"Preserve the habit of looking for checks before routine recaptures or retreats."},
+    {"id":"g182-o04","kind":"weakness","move":"16.Bb2? Rxb2","phase":"middlegame","severity":5,"confidence":"high","tags":["rook_ray","line_blindness","destination_square_safety","hanging_piece"],"summary":"Bb2 placed the bishop directly on the now-open b-file, allowing ...Rxb2 in one move.","training_rule":"Before placing a piece, scan enemy rook, bishop and queen rays through every newly vacated pawn file or diagonal."},
+    {"id":"g182-o05","kind":"strength","move":"18.Rxg7!","phase":"middlegame","severity":1,"confidence":"high","tags":["active_rook","material_recovery","initiative"],"summary":"The rook actively harvested g7 and kept practical pressure instead of retreating passively.","training_rule":"Keep active rook play as a strength, but pair it with an opponent-forcing-move scan."},
+    {"id":"g182-o06","kind":"weakness","move":"20.Rg5? Rb1+ 21.Nc1 Rxc1+","phase":"middlegame","severity":5,"confidence":"high","tags":["rook_ray","opponent_checks","forcing_moves","line_blindness","loose_piece"],"summary":"The same b-file rook was allowed to enter b1 with check, forcing Nc1 and then winning that knight with ...Rxc1+.","training_rule":"Before every own move, perform an opponent CCT scan: checks first, then captures, then direct threats."},
+    {"id":"g182-o07","kind":"review","move":"24.Rf5? / 28.Nd4? / 44.R7c6? / 51.d5? / 57.Kd3?","phase":"mixed","severity":2,"confidence":"low","tags":["engine_flag","candidate_generation"],"summary":"Fritz marked these moves as missed opportunities, but the exact tactical best moves were not independently verified.","training_rule":"Queue these positions for later engine-backed review instead of teaching an unverified answer."},
+    {"id":"g182-o08","kind":"strength","move":"61.d7! 63.d8=Q+","phase":"endgame","severity":2,"confidence":"high","tags":["passed_pawn","promotion_calculation","forcing_trade"],"summary":"The passed pawn was advanced with tempo and promoted with check, forcing the enemy rook to sacrifice itself.","training_rule":"Preserve this forcing-promotion calculation pattern."},
+    {"id":"g182-o09","kind":"weakness","move":"64.Kxd8 through 91.Rf1+","phase":"endgame","severity":4,"confidence":"high","tags":["rook_mate","conversion","king_coordination","box_method"],"summary":"After the rook trade, White had the elementary king-and-rook versus lone-king conversion but did not finish the mate over the remaining moves.","training_rule":"Cut the enemy king with the rook, bring your king up, shrink the box, then deliver the edge mate without repeated checking from distance."}
+  ],
+  "game_summary": {
+    "primary_weaknesses": ["Long-range rook-ray blindness on open files","Insufficient opponent-check scan before committing an active move","Elementary rook-mate conversion technique"],
+    "strengths": ["Forcing checks and active tactical play","Passed-pawn promotion calculation"],
+    "next_review": ["Engine-verify Fritz 'missed something' positions before converting them into answer-key tactics"]
+  }
+}

@@ -1,0 +1,33 @@
+name: Validate personal game data
+
+on:
+  push:
+    paths:
+      - 'data/games/**.json'
+      - 'data/schema/**.json'
+      - 'tools/validate_game_data.py'
+      - 'tools/build_training_catalog.py'
+      - '.github/workflows/validate-game-data.yml'
+  pull_request:
+    paths:
+      - 'data/games/**.json'
+      - 'data/schema/**.json'
+      - 'tools/validate_game_data.py'
+      - 'tools/build_training_catalog.py'
+      - '.github/workflows/validate-game-data.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate append-only game documents
+        run: python tools/validate_game_data.py
+      - name: Build derived training catalog
+        run: python tools/build_training_catalog.py --out /tmp/formychess-training.json
+      - name: Sanity-check derived catalog
+        run: python -m json.tool /tmp/formychess-training.json >/dev/null

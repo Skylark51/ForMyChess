@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Skylark51/ForMyChess/data/schema/game.schema.json",
+  "title": "ForMyChess personal game record",
+  "type": "object",
+  "required": ["schema_version", "game_id", "source", "player", "pgn", "observations", "game_summary"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "game_id": {"type": "string", "minLength": 8},
+    "source": {
+      "type": "object",
+      "required": ["kind", "event_date", "white", "black", "result", "ply_count"],
+      "properties": {
+        "kind": {"type": "string"},
+        "event": {"type": "string"},
+        "event_date": {"type": "string"},
+        "white": {"type": "string"},
+        "black": {"type": "string"},
+        "result": {"type": "string"},
+        "ply_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "player": {
+      "type": "object",
+      "required": ["name", "color"],
+      "properties": {
+        "name": {"type": "string"},
+        "color": {"enum": ["white", "black"]}
+      }
+    },
+    "pgn": {"type": "string", "minLength": 20},
+    "normalization_notes": {"type": "array", "items": {"type": "string"}},
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "move", "phase", "severity", "confidence", "tags", "summary", "training_rule"],
+        "properties": {
+          "id": {"type": "string"},
+          "kind": {"enum": ["weakness", "strength", "review"]},
+          "move": {"type": "string"},
+          "phase": {"type": "string"},
+          "severity": {"type": "integer", "minimum": 1, "maximum": 5},
+          "confidence": {"enum": ["low", "medium", "high"]},
+          "tags": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "summary": {"type": "string"},
+          "training_rule": {"type": "string"}
+        }
+      }
+    },
+    "game_summary": {"type": "object"}
+  }
+}
