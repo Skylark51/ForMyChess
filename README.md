@@ -18,7 +18,8 @@
 기존의 단순 1–3 ply 미니맥스보다 한 단계 강화된 오프라인 AI를 사용합니다.
 
 - Lichess `chess-openings` CC0 데이터에서 정리한 마스터 오프닝 북
-- 포지션 키 기반 북 매칭(수순이 전치되어도 같은 상태면 활용 가능)
+- Karpov–Kasparov 1985 Game 16, Byrne–Fischer 1956, Marshall–Capablanca 1909 Game 23의 실제 수순을 모델 게임으로 추가
+- 포지션 키 기반 북 매칭: 모델 경로가 일치하면 역사적 흑 수를 참조하고, 벗어나면 즉시 탐색 AI로 전환
 - 난이도별 2 / 3 / 4 ply 목표의 iterative deepening
 - alpha-beta pruning + transposition cache
 - capture quiescence search
@@ -35,7 +36,7 @@ AI Arena의 대국은 브라우저에서 매 수 자동 저장됩니다.
 - 체크메이트 / 스테일메이트 / 재시작 / 학습 단계 변경: 한 판 단위 기록으로 확정
 - `현재 기보 저장`: 현재 게임 JSON 다운로드
 - `전체 백업`: 지금까지 누적된 모든 게임을 하나의 JSON bundle로 다운로드
-- 각 게임에는 PGN, UCI 수순, 매 ply FEN, 전후 평가값, 오프닝 북 참조 기록이 함께 들어갑니다.
+- 각 게임에는 PGN, UCI 수순, 매 ply FEN, 전후 평가값, 오프닝/모델게임 참조 기록이 함께 들어갑니다.
 
 브라우저는 보안상 로컬 Git 저장소에 직접 파일을 쓸 수 없기 때문에, 장기 보관/분석용 원천 데이터는 백업 JSON을 가져와 `data/games/`로 넣습니다.
 
@@ -49,7 +50,7 @@ python tools/build_training_catalog.py
 
 ## Reference data
 
-`reference-book.js`의 오프닝 데이터는 `lichess-org/chess-openings`의 CC0 공개 데이터를 기반으로 정리했습니다. 더 큰 프로/마스터 PGN 데이터셋은 앱에 그대로 싣지 않고 오프라인에서 position → move 형태로 증류하는 구조를 권장합니다. 출처와 사용 원칙은 `data/reference/README.md`에 기록합니다.
+표준 오프닝은 `lichess-org/chess-openings`의 CC0 공개 데이터에서 정리했고, 유명 모델 게임은 역사적 기보의 수순을 compact position→move reference로 사용합니다. 출처와 사용 원칙은 `data/reference/README.md`에 기록합니다.
 
 ## 실행
 
