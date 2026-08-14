@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f0e">
+  <title>ForMyChess — 전술 리뷰 퀴즈</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tactics-training.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html#home"><span class="mark">♞</span><span>ForMyChess</span></a>
+  <nav><a href="index.html#opening">오프닝</a><a href="index.html#middlegame">미들게임</a><a href="index.html#knight-training">나이트 대비</a><a href="index.html#endgame">엔드게임</a><a class="play" href="index.html#arena">AI 플레이</a></nav>
+</header>
+<main>
+<section class="tacticsPhase" id="tactics-training">
+  <div class="tacticsWrap">
+    <div class="tacticsIntro">
+      <div>
+        <div class="kicker">REVIEW LAB · 32 POSITION SET</div>
+        <h2>두고 나서가 아니라,<br>두기 전에 리뷰한다.</h2>
+        <p class="copy">초급 → 중급 → 고급 → 사활의 4단계로 반복합니다. 말을 직접 클릭해 수를 선택하면 <strong>최선 / 부정확 / 실수 / 블런더</strong> 등급과 함께 왜 그 수가 문제인지 즉시 해설합니다. 특히 b3로 공격받은 비숍을 방치하는 실수, 핀된 나이트에 압력을 허용하는 Nf3, 자동 캐슬링으로 핵심 폰을 잃는 패턴을 반복하도록 구성했습니다.</p>
+      </div>
+      <div class="seriesTabs" aria-label="전술 난이도 선택">
+        <button class="seriesTab active" data-tactics-series="beginner"><b>초급</b><span>hanging piece · 포크 · 즉시 위협</span></button>
+        <button class="seriesTab" data-tactics-series="intermediate"><b>중급</b><span>핀 · 과부하 · 중간수 · 백랭크</span></button>
+        <button class="seriesTab" data-tactics-series="advanced"><b>고급</b><span>예방 · 수순 · 조용한 수비</span></button>
+        <button class="seriesTab" data-tactics-series="survival"><b>사활</b><span>ONLY MOVE · 메이트/퀸/승격 방지</span></button>
+      </div>
+    </div>
+
+    <div class="tacticsShell">
+      <div>
+        <div class="tacticsBoardFrame"><div class="tacticsBoard" id="tacticsBoard" aria-label="전술 리뷰 체스판"></div></div>
+        <p class="tacticsTiny"><b>조작:</b> 백 기물 클릭 → 목적지 클릭. 정답이 아니어도 즉시 이유를 설명합니다. <b>T</b>는 이 페이지 상단, 숫자 <b>1–4</b>는 시리즈 전환입니다.</p>
+      </div>
+      <aside class="tacticsSide">
+        <div class="tacticsPanel">
+          <div class="tacticsPanelHead">
+            <div><div class="tacticsSeriesLabel" id="tacticsSeriesName">초급 시리즈</div><h3 id="tacticsTitle">전술 리뷰</h3></div>
+            <div class="tacticsMeta"><span class="pill" id="tacticsProgress">1 / 8</span><span class="pill" id="tacticsScore">완료 0 / 8</span></div>
+          </div>
+          <p class="tacticsPrompt" id="tacticsPrompt"></p>
+          <p class="tacticsSub" id="tacticsSub"></p>
+          <p class="tacticsTiny" id="tacticsSeriesDesc"></p>
+        </div>
+
+        <div class="tacticsFeedback neutral" id="tacticsFeedback" role="status">
+          <div class="reviewTop"><span class="reviewGrade neutral" id="tacticsGrade">선택 대기</span><strong class="reviewMove" id="tacticsMove">백 차례</strong><span class="reviewEval" id="tacticsEval">—</span></div>
+          <p class="reviewText">수를 두면 선택한 수의 등급과 이유를 바로 설명합니다.</p>
+          <p class="reviewWhy">순서: 체크 → 잡기 → 위협 → 공격받는 내 기물 → 상대의 다음 forcing move.</p>
+        </div>
+
+        <div class="tacticsPanel">
+          <div class="tacticsActions">
+            <button class="btn ghost" id="tacticsHint">힌트</button>
+            <button class="btn ghost" id="tacticsAnswer">정답 보기</button>
+            <button class="btn ghost" id="tacticsRetry">다시 풀기</button>
+          </div>
+          <div class="tacticsNav" style="margin-top:8px">
+            <button class="btn ghost" id="tacticsPrev">이전</button>
+            <button class="btn primary" id="tacticsNext">다음</button>
+            <button class="btn ghost" id="tacticsShuffle">랜덤 순서</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+<footer><span>ForMyChess · tactical review lab</span><span>32 synthetic training positions · local progress save</span></footer>
+<script src="tactics-training.js"></script>
+</body>
+</html>
